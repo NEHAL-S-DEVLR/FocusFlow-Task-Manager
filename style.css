@@ -1,0 +1,356 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #000000 0%, #3b2c49 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+
+.app-container {
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 450px;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+
+header h1 {
+    color: #333;
+    font-weight: 600;
+    text-align: center;
+}
+
+header p {
+    text-align: center;
+    color: #888;
+    margin-bottom: 25px;
+}
+
+
+#task-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+
+#task-input {
+    flex-grow: 1; 
+    padding: 12px 15px;
+    border: 2px solid #eee;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+#task-input:focus {
+    outline: none;
+    border-color: #764ba2;
+}
+
+/* The Add Button Styling */
+#add-btn {
+    background-color: #764ba2;
+    color: white;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#add-btn:hover {
+    background-color: #5a387e;
+}
+
+/* List Styling */
+#task-list {
+    list-style: none; 
+}
+
+
+.task-item {
+    background-color: #f9f9f9;
+    padding: 12px 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    animation: fadeIn 0.3s ease; 
+}
+
+.task-text {
+    flex-grow: 1;
+    color: #333;
+}
+
+
+.completed .task-text {
+    text-decoration: line-through;
+    color: #888;
+    font-style: italic;
+}
+
+
+.actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-action {
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    transition: transform 0.2s;
+}
+
+.btn-action:hover {
+    transform: scale(1.1);
+}
+
+.btn-complete {
+    background-color: #e2f7e2;
+    color: #28a745;
+}
+
+.btn-delete {
+    background-color: #ffecec;
+    color: #dc3545;
+}
+
+/* Simple animation for new tasks */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+:root {
+    --bg-dark: #1a1a2e;
+    --bg-card: #23233e;
+    --bg-lighter: #2e2e4e;
+    --text-light: #e0e0e0;
+    --text-muted: #a0a0a0;
+    --accent-blue: #4e6ef2;
+    --accent-pink: #e94560;
+    --accent-green: #00d2d3;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Landing Page Styles */
+.landing-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+.hero-section {
+    padding: 100px 20px;
+}
+.hero-title {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    background: linear-gradient(to right, var(--accent-blue), var(--accent-pink));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.btn-primary {
+    background-color: var(--accent-blue);
+    color: white;
+    padding: 12px 30px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+.btn-primary:hover { transform: scale(1.05); }
+
+/* Form Styles (Login/Profile) */
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.card {
+    background-color: var(--bg-card);
+    padding: 40px;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+.form-group { margin-bottom: 20px; text-align: left; }
+.form-group label { display: block; margin-bottom: 8px; color: var(--text-muted); }
+.form-input {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--bg-dark);
+    border: 1px solid var(--bg-lighter);
+    border-radius: 8px;
+    color: white;
+    box-sizing: border-box; 
+}
+.form-input:focus { outline: none; border-color: var(--accent-blue); }
+
+/* Dashboard Specifics */
+.dashboard-layout { display: flex; height: 100vh; overflow: hidden; }
+.sidebar {
+    width: 70px;
+    background-color: var(--bg-card);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    border-right: 1px solid var(--bg-lighter);
+}
+.sidebar-icon {
+    color: var(--text-muted);
+    font-size: 24px;
+    margin-bottom: 35px;
+    cursor: pointer;
+    text-decoration: none;
+}
+.sidebar-icon:hover, .sidebar-icon.active { color: var(--accent-blue); }
+.main-content { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+
+/* Header */
+.top-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 30px;
+    background-color: var(--bg-card);
+    border-bottom: 1px solid var(--bg-lighter);
+}
+.user-profile-trigger {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 8px;
+    transition: background 0.2s;
+}
+.user-profile-trigger:hover { background-color: var(--bg-lighter); }
+
+/* Kanban Board */
+.board-container {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+}
+.column {
+    min-width: 280px;
+    background-color: rgba(255,255,255,0.02);
+    border-radius: 10px;
+    padding: 15px;
+}
+.task-card {
+    background-color: var(--bg-card);
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+.task-card:hover { border-color: var(--accent-blue); }
+
+/* Add Task Modal */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+.modal-content {
+    background-color: var(--bg-card);
+    padding: 30px;
+    border-radius: 15px;
+    width: 400px;
+}
+.fab-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px; height: 60px;
+    background-color: var(--accent-blue);
+    color: white;
+    border-radius: 50%;
+    font-size: 30px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(78, 110, 242, 0.4);
+    display: flex; justify-content: center; align-items: center;
+}
+.fab-btn:hover { transform: scale(1.1); }
+/* --- FIXED SIDEBAR SETTINGS --- */
+
+.sidebar {
+    position: fixed !important; /* Forces the sidebar to stay in one place */
+    top: 0;
+    left: 0;
+    height: 100vh; /* Makes it take up the full height of the screen */
+    width: 70px;   /* Sets the specific width */
+    z-index: 1000; /* Ensures it stays on top of other elements */
+    overflow-y: auto; /* Allows scrolling inside the sidebar if the screen is short */
+    
+    /* Retaining the visual style */
+    background-color: var(--bg-card);
+    border-right: 1px solid var(--bg-lighter);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+}
+
+/* Adjust the Main Content so it doesn't hide behind the sidebar */
+.main-content {
+    margin-left: 70px !important; /* Pushes content to the right (must match sidebar width) */
+    width: calc(100% - 70px) !important; /* Calculates remaining width */
+    min-height: 100vh;
+    position: relative;
+}
+
+/* Optional: Removes the flex layout requirement from the parent container 
+   since we are now using fixed positioning */
+.dashboard-layout {
+    display: block !important; 
+}

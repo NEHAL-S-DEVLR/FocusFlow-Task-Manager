@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Task Management</title>
+    <style>
+        :root {
+            --bg-dark: #1a1a2e;
+            --bg-card: #23233e;
+            --accent-blue: #4e6ef2;
+            --text-light: #e0e0e0;
+            --text-muted: #a0a0a0;
+        }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-card {
+            background-color: var(--bg-card);
+            padding: 40px;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            color: var(--accent-blue);
+        }
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            background-color: #1a1a2e;
+            border: 1px solid #333;
+            border-radius: 8px;
+            color: white;
+            box-sizing: border-box; /* Ensures padding doesn't affect width */
+        }
+        input:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+        }
+        .btn-login {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--accent-blue);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 10px;
+        }
+        .btn-login:hover {
+            background-color: #3b5bdb;
+        }
+        .footer-link {
+            display: block;
+            margin-top: 20px;
+            color: var(--text-muted);
+            font-size: 13px;
+            text-decoration: none;
+        }
+        .footer-link:hover {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-card">
+        <div class="logo">Task Management</div>
+        <form onsubmit="event.preventDefault(); window.location.href='index.html';">
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" placeholder="Enter your username" required>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" placeholder="Enter your password" required>
+            </div>
+            <button type="submit" class="btn-login">Sign In</button>
+        </form>
+        <a href="#" class="footer-link">Forgot password?</a>
+        <a href="pricing.html" class="footer-link" style="margin-top: 10px;">View Pricing Plans</a>
+    </div>
+</body>
+</html>

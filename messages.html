@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Messages - FocusFlow</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Page specific styles for Chat */
+        .chat-layout { display: flex; height: calc(100vh - 81px); }
+        .inbox-list { width: 300px; border-right: 1px solid var(--bg-lighter); overflow-y: auto; }
+        .msg-preview { padding: 15px; border-bottom: 1px solid var(--bg-lighter); cursor: pointer; transition: background 0.2s; }
+        .msg-preview:hover, .msg-preview.active { background-color: rgba(255,255,255,0.05); }
+        .chat-window { flex: 1; display: flex; flex-direction: column; background-color: rgba(0,0,0,0.2); }
+        .chat-content { flex: 1; padding: 20px; overflow-y: auto; }
+        .message-bubble { max-width: 70%; padding: 10px 15px; border-radius: 10px; margin-bottom: 10px; font-size: 14px; }
+        .received { background-color: var(--bg-lighter); align-self: flex-start; }
+        .sent { background-color: var(--accent-blue); align-self: flex-end; margin-left: auto; }
+        .chat-input-area { padding: 15px; background-color: var(--bg-card); display: flex; gap: 10px; }
+    </style>
+</head>
+<body>
+    <div class="dashboard-layout">
+        <aside class="sidebar">
+            <a href="#" class="sidebar-icon">☰</a>
+            <a href="dashboard.html" class="sidebar-icon">▦</a>
+            <a href="messages.html" class="sidebar-icon active">✉</a>
+            <a href="tasks.html" class="sidebar-icon">✓</a>
+            <a href="calendar.html" class="sidebar-icon">📅</a>
+            <a href="network.html" class="sidebar-icon">🌐</a>
+            <a href="analytics.html" class="sidebar-icon">📊</a>
+            <a href="settings.html" class="sidebar-icon">⚙</a>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-header">
+                <h2>Inbox</h2>
+                <div class="user-profile-trigger">Name Surname</div>
+            </header>
+
+            <div class="chat-layout">
+                <div class="inbox-list">
+                    <div class="msg-preview active">
+                        <div style="font-weight: bold;">Jane Doe</div>
+                        <div style="font-size: 12px; color: var(--text-muted);">Can we reschedule?</div>
+                    </div>
+                    <div class="msg-preview">
+                        <div style="font-weight: bold;">Team Lead</div>
+                        <div style="font-size: 12px; color: var(--text-muted);">Project files attached...</div>
+                    </div>
+                    <div class="msg-preview">
+                        <div style="font-weight: bold;">HR Dept</div>
+                        <div style="font-size: 12px; color: var(--text-muted);">Holiday schedule update</div>
+                    </div>
+                </div>
+
+                <div class="chat-window">
+                    <div class="chat-content">
+                        <div class="message-bubble received">Hi! Are we still on for the meeting at 2 PM?</div>
+                        <div class="message-bubble sent">Yes, definitely. I am preparing the slides now.</div>
+                        <div class="message-bubble received">Great, see you then!</div>
+                    </div>
+                    <div class="chat-input-area">
+                        <input type="text" class="form-input" placeholder="Type a message...">
+                        <button class="btn-primary">Send</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

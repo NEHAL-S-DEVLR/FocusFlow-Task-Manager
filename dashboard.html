@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard-layout">
+        <aside class="sidebar">
+            <a href="#" class="sidebar-icon active">☰</a>
+            <a href="#" class="sidebar-icon">▦</a> <a href="messages.html" class="sidebar-icon">✉</a> <a href="index.html" class="sidebar-icon">✓</a> <a href="settings.html" class="sidebar-icon">⚙</a> </aside>
+
+        <main class="main-content">
+            <header class="top-header">
+                <div>
+                    <h2 style="margin: 0;">Task Management</h2>
+                    <span style="color: var(--text-muted); font-size: 14px;">Tasks > Today</span>
+                </div>
+                
+                <a href="profile.html" style="text-decoration: none; color: inherit;">
+                    <div class="user-profile-trigger">
+                        <div style="text-align: right; margin-right: 10px;">
+                            <div style="font-weight: bold;">Name Surname</div>
+                            <div style="font-size: 12px; color: var(--text-muted);">View Profile</div>
+                        </div>
+                        <div style="width: 40px; height: 40px; background: var(--accent-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center;">NS</div>
+                    </div>
+                </a>
+            </header>
+
+            <div class="board-container">
+                <div class="column">
+                    <h4 style="color: var(--text-muted); text-transform: uppercase;">Draft</h4>
+                    <div class="task-card">
+                        <div style="font-weight: bold; margin-bottom: 5px;">Design Homepage</div>
+                        <div style="font-size: 12px; color: var(--accent-pink); background: rgba(233, 69, 96, 0.1); padding: 5px; border-radius: 4px; display: inline-block;">High Priority</div>
+                    </div>
+                    <div class="task-card">
+                        <div style="font-weight: bold;">Draft Logo Concepts</div>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <h4 style="color: var(--text-muted); text-transform: uppercase;">In Progress</h4>
+                    <div class="task-card">
+                        <div style="font-weight: bold; margin-bottom: 5px;">Frontend Development</div>
+                        <div style="height: 4px; background: #333; border-radius: 2px; margin: 10px 0;">
+                            <div style="width: 70%; height: 100%; background: var(--accent-blue);"></div>
+                        </div>
+                        <div style="font-size: 12px; color: var(--text-muted);">70% Complete</div>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <h4 style="color: var(--text-muted); text-transform: uppercase;">Done</h4>
+                    <div class="task-card" style="opacity: 0.6;">
+                        <div style="font-weight: bold; text-decoration: line-through;">Client Meeting</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <button class="fab-btn" onclick="openModal()">+</button>
+
+    <div id="addTaskModal" class="modal">
+        <div class="modal-content">
+            <h2 style="margin-top: 0;">Add New Task</h2>
+            <form onsubmit="event.preventDefault(); closeModal();">
+                <div class="form-group">
+                    <label>Task Title</label>
+                    <input type="text" class="form-input" placeholder="e.g. Update Database">
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea class="form-input" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Status</label>
+                    <select class="form-input">
+                        <option>Draft</option>
+                        <option>In Progress</option>
+                        <option>Done</option>
+                    </select>
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <button type="submit" class="btn-primary" style="flex: 1;">Create Task</button>
+                    <button type="button" class="btn-primary" style="background: #444; flex: 1;" onclick="closeModal()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

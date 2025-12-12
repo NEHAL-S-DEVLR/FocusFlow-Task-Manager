@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Network - FocusFlow</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; padding: 20px; }
+        .member-card { background-color: var(--bg-card); padding: 20px; border-radius: 10px; text-align: center; transition: transform 0.2s; }
+        .member-card:hover { transform: translateY(-5px); }
+        .avatar-lg { width: 80px; height: 80px; border-radius: 50%; background-color: var(--bg-lighter); margin: 0 auto 15px auto; display: flex; align-items: center; justify-content: center; font-size: 30px; }
+    </style>
+</head>
+<body>
+    <div class="dashboard-layout">
+        <aside class="sidebar">
+            <a href="#" class="sidebar-icon">☰</a>
+            <a href="dashboard.html" class="sidebar-icon">▦</a>
+            <a href="messages.html" class="sidebar-icon">✉</a>
+            <a href="tasks.html" class="sidebar-icon">✓</a>
+            <a href="calendar.html" class="sidebar-icon">📅</a>
+            <a href="network.html" class="sidebar-icon active">🌐</a>
+            <a href="analytics.html" class="sidebar-icon">📊</a>
+            <a href="settings.html" class="sidebar-icon">⚙</a>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-header">
+                <h2>Team Members</h2>
+                <button class="btn-primary">Invite Member</button>
+            </header>
+
+            <div class="team-grid">
+                <div class="member-card">
+                    <div class="avatar-lg" style="background: #e94560;">JD</div>
+                    <h3>prajwal s m </h3>
+                    <p style="color: var(--text-muted); font-size: 14px;">UI/UX Designer</p>
+                    <button class="btn-primary" style="margin-top: 10px; padding: 5px 15px; font-size: 12px;">Message</button>
+                </div>
+
+                <div class="member-card">
+                    <div class="avatar-lg" style="background: #4e6ef2;">MS</div>
+                    <h3>mounesh</h3>
+                    <p style="color: var(--text-muted); font-size: 14px;">Backend Dev</p>
+                    <button class="btn-primary" style="margin-top: 10px; padding: 5px 15px; font-size: 12px;">Message</button>
+                </div>
+
+                <div class="member-card">
+                    <div class="avatar-lg" style="background: #00d2d3;">AL</div>
+                    <h3>pawan
+                    </h3>
+                    <p style="color: var(--text-muted); font-size: 14px;">Product Manager</p>
+                    <button class="btn-primary" style="margin-top: 10px; padding: 5px 15px; font-size: 12px;">Message</button>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

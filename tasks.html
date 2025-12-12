@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Tasks - FocusFlow</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .task-row { display: flex; align-items: center; padding: 15px; border-bottom: 1px solid var(--bg-lighter); background: var(--bg-card); margin-bottom: 5px; border-radius: 5px; }
+        .task-row:hover { background-color: var(--bg-lighter); }
+        .status-badge { padding: 4px 8px; border-radius: 4px; font-size: 12px; width: 80px; text-align: center; }
+        .status-done { background: rgba(0, 210, 211, 0.1); color: var(--accent-green); }
+        .status-progress { background: rgba(78, 110, 242, 0.1); color: var(--accent-blue); }
+    </style>
+</head>
+<body>
+    <div class="dashboard-layout">
+        <aside class="sidebar">
+            <a href="#" class="sidebar-icon">☰</a>
+            <a href="dashboard.html" class="sidebar-icon">▦</a>
+            <a href="messages.html" class="sidebar-icon">✉</a>
+            <a href="tasks.html" class="sidebar-icon active">✓</a>
+            <a href="calendar.html" class="sidebar-icon">📅</a>
+            <a href="network.html" class="sidebar-icon">🌐</a>
+            <a href="analytics.html" class="sidebar-icon">📊</a>
+            <a href="settings.html" class="sidebar-icon">⚙</a>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-header">
+                <h2>All Tasks</h2>
+                <button class="btn-primary" style="padding: 5px 15px; font-size: 14px;">+ New Task</button>
+            </header>
+
+            <div style="padding: 20px;">
+                <div style="display: flex; padding: 10px 15px; color: var(--text-muted); font-size: 13px;">
+                    <div style="flex: 3;">TASK NAME</div>
+                    <div style="flex: 1;">DUE DATE</div>
+                    <div style="flex: 1;">PRIORITY</div>
+                    <div style="flex: 1;">STATUS</div>
+                </div>
+
+                <div class="task-row">
+                    <div style="flex: 3; font-weight: bold;">Update Homepage Hero Section</div>
+                    <div style="flex: 1; color: var(--text-muted);">Oct 24, 2023</div>
+                    <div style="flex: 1; color: var(--accent-pink);">High</div>
+                    <div style="flex: 1;"><span class="status-badge status-progress">In Progress</span></div>
+                </div>
+
+                <div class="task-row">
+                    <div style="flex: 3; font-weight: bold;">Fix Login Bug on Safari</div>
+                    <div style="flex: 1; color: var(--text-muted);">Oct 25, 2023</div>
+                    <div style="flex: 1; color: var(--accent-blue);">Medium</div>
+                    <div style="flex: 1;"><span class="status-badge status-done">Done</span></div>
+                </div>
+
+                <div class="task-row">
+                    <div style="flex: 3; font-weight: bold;">Prepare Monthly Report</div>
+                    <div style="flex: 1; color: var(--text-muted);">Oct 30, 2023</div>
+                    <div style="flex: 1; color: var(--accent-green);">Low</div>
+                    <div style="flex: 1;"><span class="status-badge status-progress">Pending</span></div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

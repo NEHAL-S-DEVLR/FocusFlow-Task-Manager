@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Analytics - FocusFlow</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 20px; }
+        .stat-card { background-color: var(--bg-card); padding: 20px; border-radius: 10px; }
+        .big-number { font-size: 36px; font-weight: bold; margin: 10px 0; }
+        
+        /* Simple CSS Bar Chart */
+        .chart-box { height: 200px; display: flex; align-items: flex-end; gap: 10px; padding-top: 20px; border-bottom: 1px solid var(--text-muted); }
+        .bar { width: 100%; background-color: var(--accent-blue); border-radius: 5px 5px 0 0; position: relative; transition: height 1s; }
+        .bar:hover { opacity: 0.8; }
+    </style>
+</head>
+<body>
+    <div class="dashboard-layout">
+        <aside class="sidebar">
+            <a href="#" class="sidebar-icon">☰</a>
+            <a href="dashboard.html" class="sidebar-icon">▦</a>
+            <a href="messages.html" class="sidebar-icon">✉</a>
+            <a href="tasks.html" class="sidebar-icon">✓</a>
+            <a href="calendar.html" class="sidebar-icon">📅</a>
+            <a href="network.html" class="sidebar-icon">🌐</a>
+            <a href="analytics.html" class="sidebar-icon active">📊</a>
+            <a href="settings.html" class="sidebar-icon">⚙</a>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-header">
+                <h2>Productivity Analytics</h2>
+            </header>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div style="color: var(--text-muted);">Tasks Completed</div>
+                    <div class="big-number" style="color: var(--accent-green);">128</div>
+                    <div style="font-size: 12px;">+12% from last week</div>
+                </div>
+                <div class="stat-card">
+                    <div style="color: var(--text-muted);">Hours Spent</div>
+                    <div class="big-number" style="color: var(--accent-blue);">42h</div>
+                    <div style="font-size: 12px;">On track</div>
+                </div>
+                <div class="stat-card">
+                    <div style="color: var(--text-muted);">Pending Tasks</div>
+                    <div class="big-number" style="color: var(--accent-pink);">5</div>
+                    <div style="font-size: 12px;">Needs attention</div>
+                </div>
+            </div>
+
+            <div style="padding: 0 20px;">
+                <div class="stat-card">
+                    <h3>Weekly Activity</h3>
+                    <div class="chart-box">
+                        <div class="bar" style="height: 40%;" title="Mon"></div>
+                        <div class="bar" style="height: 70%;" title="Tue"></div>
+                        <div class="bar" style="height: 55%;" title="Wed"></div>
+                        <div class="bar" style="height: 90%;" title="Thu"></div>
+                        <div class="bar" style="height: 30%;" title="Fri"></div>
+                        <div class="bar" style="height: 20%;" title="Sat"></div>
+                        <div class="bar" style="height: 10%;" title="Sun"></div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-top: 10px; color: var(--text-muted); font-size: 12px;">
+                        <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

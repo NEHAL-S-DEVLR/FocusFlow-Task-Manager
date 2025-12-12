@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Management Dashboard</title>
+    <style>
+        :root {
+            --bg-dark: #1a1a2e;
+            --bg-card: #23233e;
+            --bg-lighter: #2e2e4e;
+            --text-light: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --accent-blue: #4e6ef2;
+            --accent-cyan: #00d2ff;
+            --accent-pink: #e94560;
+            --accent-orange: #f2a365;
+            --accent-yellow: #ffdd59;
+            --accent-green: #00d2d3;
+            --accent-purple: #9c88ff;
+        }
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            margin: 0;
+            display: flex;
+            height: 100vh;
+        }
+        .dashboard {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        /* Sidebar Styles */
+        .sidebar {
+            width: 60px;
+            background-color: var(--bg-card);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 0;
+            border-right: 1px solid var(--bg-lighter);
+            flex-shrink: 0; /* Prevents sidebar from shrinking */
+        }
+        .sidebar-icon {
+            color: var(--text-muted);
+            font-size: 20px;
+            margin-bottom: 30px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .sidebar-icon:hover, .sidebar-icon.active {
+            color: var(--accent-blue);
+        }
+        .nav-link {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            background-color: var(--bg-card);
+            border-bottom: 1px solid var(--bg-lighter);
+        }
+        .header-left h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .header-left .breadcrumb {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .header-right a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--accent-blue);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+        }
+
+        /* Body & Board Layout */
+        .content-body {
+            flex: 1;
+            display: flex;
+            padding: 20px;
+            gap: 20px;
+            overflow-y: auto;
+        }
+        .kanban-board {
+            flex: 3;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* Creates 4 equal columns */
+            gap: 20px;
+            min-width: 800px; /* Ensures columns don't squash too much */
+        }
+        .kanban-column {
+            background-color: rgba(255, 255, 255, 0.02); /* Slight background to separate columns */
+            border-radius: 10px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .column-header {
+            color: var(--text-muted);
+            font-size: 14px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            font-weight: bold;
+            padding-left: 5px;
+        }
+        
+        /* Task Card Styles */
+        .task-card {
+            background-color: var(--bg-card);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .task-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .task-title {
+            font-weight: 600;
+        }
+        .subtask {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+            padding: 8px;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+        /* Subtask Colors */
+        .subtask.blue { background-color: rgba(78, 110, 242, 0.1); color: var(--accent-blue); }
+        .subtask.pink { background-color: rgba(233, 69, 96, 0.1); color: var(--accent-pink); }
+        .subtask.cyan { background-color: rgba(0, 210, 211, 0.1); color: var(--accent-cyan); }
+        .subtask.purple { background-color: rgba(156, 136, 255, 0.1); color: var(--accent-purple); }
+        .subtask.yellow { background-color: rgba(255, 221, 89, 0.1); color: var(--accent-yellow); }
+        .subtask.green { background-color: rgba(0, 210, 211, 0.1); color: var(--accent-green); }
+
+        .progress-bar-container {
+            height: 6px;
+            background-color: var(--bg-lighter);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        .progress-bar {
+            height: 100%;
+            background-color: var(--accent-blue);
+        }
+        .task-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-muted);
+            font-size: 12px;
+            margin-top: 10px;
+        }
+        .star-icon { color: var(--accent-yellow); }
+
+        /* Right Panel */
+        .right-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            min-width: 250px;
+        }
+        .panel-card {
+            background-color: var(--bg-card);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .panel-title {
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        /* Charts */
+        .chart-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        .chart-bar-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .chart-bar {
+            width: 20px;
+            border-radius: 10px;
+            margin-bottom: 5px;
+        }
+        .chart-bar.blue { height: 80px; background-color: var(--accent-blue); }
+        .chart-bar.purple { height: 60px; background-color: var(--accent-purple); }
+        .chart-bar.pink { height: 90px; background-color: var(--accent-pink); }
+        .chart-bar.orange { height: 70px; background-color: var(--accent-orange); }
+        .chart-label { font-size: 12px; color: var(--text-muted); }
+        
+        /* Gauges */
+        .gauge-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        .gauge {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 5px solid var(--bg-lighter);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .gauge.blue { border-top-color: var(--accent-blue); border-right-color: var(--accent-blue); }
+        .gauge.purple { border-top-color: var(--accent-purple); border-right-color: var(--accent-purple); }
+        .gauge.pink { border-top-color: var(--accent-pink); border-right-color: var(--accent-pink); }
+        .gauge.orange { border-top-color: var(--accent-orange); border-right-color: var(--accent-orange); }
+        .gauge-value { font-weight: 600; }
+
+        /* Plan List */
+        .plan-list { list-style: none; padding: 0; }
+        .plan-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--bg-lighter);
+            font-size: 12px;
+        }
+        .plan-time { color: var(--text-muted); }
+        .plan-desc { text-align: right; }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <aside class="sidebar">
+            <div><a class="sidebar-icon active">☰</a></div>
+            <div><a href="messages.html" class="nav-link sidebar-icon">▦</a></div>
+            <div><a href="messages.html" class="nav-link sidebar-icon">✉</a></div>
+            <div><a href="tasks.html" class="nav-link sidebar-icon">✓</a></div>
+            <div><a href="calendar.html" class="nav-link sidebar-icon">📅</a></div>
+            <div><a href="network.html" class="nav-link sidebar-icon">🌐</a></div>
+            <div><a href="analytics.html" class="nav-link sidebar-icon">📊</a></div>
+            <div><a href="settings.html" class="nav-link sidebar-icon">⚙</a></div>
+        </aside>
+
+        <main class="main-content">
+            <header class="header">
+                <div class="header-left">
+                    <div class="breadcrumb">Tasks > Today</div>
+                    <h1>Task Management</h1>
+                </div>
+                <div class="header-right">
+                    <a href="pricing.html">Pricing</a>
+                    <a href="#">About</a>
+                    <a href="#">Language</a>
+                    <a href="#">Conditions</a>
+                    <div class="user-profile">
+                        <div class="user-info">
+                            <div><a href="profile.html" style="color:white; text-decoration:none;">Profile</a></div>
+                        </div>
+                        <div class="user-avatar">👤</div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-body">
+                <div class="kanban-board">
+                    
+                    <div class="kanban-column">
+                        <div class="column-header">Draft</div>
+                        <div class="task-card">
+                            <div class="task-card-header">
+                                <div class="task-title">Main Task</div>
+                                <span>⋮</span>
+                            </div>
+                            <div class="subtask blue">Task 1</div>
+                            <div class="subtask pink">Task 2</div>
+                            <div class="task-meta">
+                                <div class="task-meta-left"><span>👥 3</span><span>📎 2</span></div>
+                            </div>
+                        </div>
+                        <div class="task-card">
+                            <div class="task-card-header">
+                                <div class="task-title">Secondary Task</div>
+                                <span>⋮</span>
+                            </div>
+                            <div class="subtask green">Project 1</div>
+                            <div class="task-meta">
+                                <div class="task-meta-left"><span>👥 1</span><span>📎 4</span></div>
+                                <div class="task-meta-right"><span class="star-icon">★</span></div>
+                            </div>
+                        </div>
+                        <div class="task-card">
+                            <div class="task-card-header">
+                                <div class="task-title">Tertiary Task</div>
+                                <span>⋮</span>
+                            </div>
+                            <div class="subtask purple">P 2</div>
+                            <div class="task-meta">
+                                <div class="task-meta-left"><span>👥 4</span><span>📎 2</span></div>
+                                <div class="task-meta-right"><span class="star-icon">★</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="kanban-column">
+                        <div class="column-header">In Progress</div>
+                        <div class="task-card">
+                            <div class="task-card-header">
+                                <div class="task-title">Main Task</div>
+                                <span>⋮</span>
+                            </div>
+                            <div class="subtask pink">P 3</div>
+                            <div class="task-meta">
+                                <div class="task-meta-left"><span>💬 1</span><span>👥 5</span></div>
+                                <div class="task-meta-right"><span class="star-icon">★</span></div>
+                            </div>
+                            <div style="font-size: 12px; margin-top: 5px;">Progress 75%</div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar" style="width: 75%;"></div>
+                            </div>
+                        </div>
+                        <div class="task-card">
+                            <div class="task-card-header">
+                                <div class="task-title">Secondary Task</div>
+                                <span>⋮</span>
+                            </div>
+                            <div class="subtask pink">P 4</div>
+                            <div class="subtask yellow">Sub P 4</div>
+                            <div class="task-meta">
+                                <div class="task-meta-left"><span>💬 2</span><span>👥 6</span></div>
+                            </div>
+                            <div style="font-size: 12px; margin-top: 5px;">Progress 50%</div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar" style="width: 50%;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="kanban-column">
+                        <div class="column-header">Editing</div>
+                        <div class="task-card">
+                            <div class="task-card-header">
+                                <div class="task-title">Main Task</div>
+                                <span>⋮</span>
+                            </div>
+                            <div class="subtask cyan">P 5</div>
+                            <div class="subtask blue">Sub P 5 Sub 1</div>
+                            <div class="subtask purple">Sub P 5 Sub 2</div>
+                            <div class="task-meta">
+                                <div class="task-meta-left"><span>Supervisor</span> <span>✅ ✅</span></div>
+                                <div class="task-meta-right"><span class="star-icon">★</span></div>
+                            </div>
+                        </div>
+                        <div class="task-card">
+                            <div class="task-card-header">
+                                <div class="task-title">Secondary Task</div>
+                                <span>⋮</span>
+                            </div>
+                            <div class="subtask cyan">Read Book</div>
+                            <div class="subtask blue">Buy Bat</div>
+                            <div class="subtask purple">Soccer</div>
+                            <div class="subtask pink">Phone Charge</div>
+                            <div class="subtask yellow">Java Reading</div>
+                            <div class="task-meta">
+                                <div class="task-meta-left"><span>Supervisor</span> <span>✅ ✅</span></div>
+                            </div>
+                        </div>
+                        <div class="task-card">
+                            <div class="task-card-header">
+                                <div class="task-title">Tertiary Task</div>
+                                <span>⋮</span>
+                            </div>
+                            <div class="subtask cyan">CSS HTML Read</div>
+                            <div class="subtask blue">Water the Plants</div>
+                            <div class="subtask purple">Buy Flowers</div>
+                        </div>
+                    </div>
+
+                    <div class="kanban-column">
+                        <div class="column-header">Done</div>
+                        <div class="task-card">
+                            <div class="task-card-header">
+                                <div class="task-title">Main Task</div>
+                                <span>⋮</span>
+                            </div>
+                            <div class="subtask blue">Get Vegetables <span>✓</span></div>
+                            <div class="subtask purple">What up bro <span>✓</span></div>
+                            <div class="subtask pink">Swanthadha vishya beda <span>✓</span></div>
+                            <div class="subtask yellow">Swantha superuu <span>✓</span></div>
+                            <div class="subtask blue">Swantakanakakakakak <span>✓</span></div>
+                            <div class="task-meta">
+                                <div class="task-meta-left"><span>💬 1</span><span>👥 3</span></div>
+                            </div>
+                        </div>
+                        <div class="task-card">
+                            <div class="task-card-header">
+                                <div class="task-title">Secondary Task</div>
+                                <span>⋮</span>
+                            </div>
+                            <div class="subtask pink">Marali baradha orige <span>✓</span></div>
+                            <div class="subtask yellow">Anna ogawne tourige <span>✓</span></div>
+                            <div class="task-meta">
+                                <div class="task-meta-left"><span>💬 4</span><span>👥 6</span></div>
+                                <div class="task-meta-right"><span class="star-icon">★</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div> <div class="right-panel">
+                    <div class="panel-card">
+                        <div class="panel-title">COMPLETED TASKS</div>
+                        <div class="chart-container">
+                            <div class="chart-bar-group">
+                                <div class="chart-bar blue"></div>
+                                <div class="chart-label">210</div>
+                                <div class="chart-label">Author A</div>
+                            </div>
+                            <div class="chart-bar-group">
+                                <div class="chart-bar purple"></div>
+                                <div class="chart-label">110</div>
+                                <div class="chart-label">Author B</div>
+                            </div>
+                            <div class="chart-bar-group">
+                                <div class="chart-bar pink"></div>
+                                <div class="chart-label">176</div>
+                                <div class="chart-label">Author C</div>
+                            </div>
+                            <div class="chart-bar-group">
+                                <div class="chart-bar orange"></div>
+                                <div class="chart-label">145</div>
+                                <div class="chart-label">Author D</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-card">
+                        <div class="panel-title">EFFICIENCY</div>
+                        <div class="gauge-container">
+                            <div class="gauge blue"><span class="gauge-value">75</span></div>
+                            <div class="gauge purple"><span class="gauge-value">44</span></div>
+                            <div class="gauge pink"><span class="gauge-value">68</span></div>
+                            <div class="gauge orange"><span class="gauge-value">55</span></div>
+                        </div>
+                    </div>
+                    <div class="panel-card">
+                        <div class="panel-title">PLAN</div>
+                        <ul class="plan-list">
+                            <li class="plan-item">
+                                <span class="plan-time">12:00 - 13:00</span>
+                                <span class="plan-desc">Wash</span>
+                            </li>
+                            <li class="plan-item">
+                                <span class="plan-time">13:00 - 14:00</span>
+                                <span class="plan-desc">Brush</span>
+                            </li>
+                            <li class="plan-item">
+                                <span class="plan-time">14:00 - 15:00</span>
+                                <span class="plan-desc">Relax</span>
+                            </li>
+                            <li class="plan-item">
+                                <span class="plan-time">15:00 - 16:00</span>
+                                <span class="plan-desc">Surya Namaskara</span>
+                            </li>
+                            <li class="plan-item">
+                                <span class="plan-time">Anytime</span>
+                                <span class="plan-desc">Nkn leyyyyyyyyyyyyyyyyy!</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - Task Management</title>
+    <style>
+        :root {
+            --bg-dark: #1a1a2e;
+            --bg-card: #23233e;
+            --accent-blue: #4e6ef2;
+            --accent-pink: #e94560;
+            --text-light: #e0e0e0;
+        }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            margin: 0;
+            padding: 50px;
+            text-align: center;
+        }
+        h1 { margin-bottom: 10px; }
+        p { color: #a0a0a0; margin-bottom: 50px; }
+        
+        .pricing-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .price-card {
+            background-color: var(--bg-card);
+            padding: 40px;
+            border-radius: 15px;
+            width: 300px;
+            border: 1px solid transparent;
+            transition: transform 0.3s;
+        }
+        .price-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-blue);
+        }
+        .price-card.popular {
+            border-color: var(--accent-pink);
+            position: relative;
+        }
+        .badge {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background-color: var(--accent-pink);
+            padding: 5px 10px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .price {
+            font-size: 36px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        .price span { font-size: 16px; color: #a0a0a0; font-weight: normal; }
+        
+        ul { list-style: none; padding: 0; text-align: left; margin-bottom: 30px; }
+        li { margin-bottom: 15px; color: #ccc; }
+        li::before { content: "✓"; color: var(--accent-blue); margin-right: 10px; font-weight: bold; }
+        
+        .btn-price {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: transparent;
+            border: 2px solid var(--accent-blue);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        .btn-price:hover, .price-card.popular .btn-price {
+            background-color: var(--accent-blue);
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 40px;
+            color: #a0a0a0;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Simple Pricing</h1>
+    <p>Choose the plan that fits your team size.</p>
+
+    <div class="pricing-container">
+        <div class="price-card">
+            <h3>Starter</h3>
+            <div class="price">$0 <span>/mo</span></div>
+            <ul>
+                <li>5 Projects</li>
+                <li>Basic Analytics</li>
+                <li>2 Team Members</li>
+            </ul>
+            <a href="login.html" class="btn-price">Get Started</a>
+        </div>
+
+        <div class="price-card popular">
+            <div class="badge">BEST VALUE</div>
+            <h3>Professional</h3>
+            <div class="price">$29 <span>/mo</span></div>
+            <ul>
+                <li>Unlimited Projects</li>
+                <li>Advanced Analytics</li>
+                <li>10 Team Members</li>
+                <li>Priority Support</li>
+            </ul>
+            <a href="login.html" class="btn-price">Try Free</a>
+        </div>
+
+        <div class="price-card">
+            <h3>Enterprise</h3>
+            <div class="price">$99 <span>/mo</span></div>
+            <ul>
+                <li>Everything in Pro</li>
+                <li>Unlimited Members</li>
+                <li>Custom Integration</li>
+                <li>24/7 Support</li>
+            </ul>
+            <a href="login.html" class="btn-price">Contact Sales</a>
+        </div>
+    </div>
+    
+    <a href="index.html" class="back-link">← Back to Dashboard</a>
+</body>
+</html>

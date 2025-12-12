@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calendar - FocusFlow</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 1px; background-color: var(--bg-lighter); margin-top: 20px; border: 1px solid var(--bg-lighter); }
+        .day-header { background-color: var(--bg-card); padding: 10px; text-align: center; color: var(--text-muted); font-size: 14px; }
+        .calendar-day { background-color: var(--bg-dark); min-height: 100px; padding: 10px; position: relative; }
+        .calendar-day:hover { background-color: #202035; }
+        .date-number { font-weight: bold; margin-bottom: 5px; }
+        .event-chip { font-size: 11px; padding: 3px 6px; border-radius: 4px; margin-bottom: 2px; color: white; cursor: pointer; }
+        .evt-blue { background-color: var(--accent-blue); }
+        .evt-pink { background-color: var(--accent-pink); }
+    </style>
+</head>
+<body>
+    <div class="dashboard-layout">
+        <aside class="sidebar">
+            <a href="#" class="sidebar-icon">☰</a>
+            <a href="dashboard.html" class="sidebar-icon">▦</a>
+            <a href="messages.html" class="sidebar-icon">✉</a>
+            <a href="tasks.html" class="sidebar-icon">✓</a>
+            <a href="calendar.html" class="sidebar-icon active">📅</a>
+            <a href="network.html" class="sidebar-icon">🌐</a>
+            <a href="analytics.html" class="sidebar-icon">📊</a>
+            <a href="settings.html" class="sidebar-icon">⚙</a>
+        </aside>
+
+        <main class="main-content" style="padding: 20px;">
+            <header style="display: flex; justify-content: space-between; align-items: center;">
+                <h2>december 2025 </h2>
+                <div>
+                    <button class="btn-primary" style="background: transparent; border: 1px solid var(--bg-lighter);">&lt;</button>
+                    <button class="btn-primary" style="background: transparent; border: 1px solid var(--bg-lighter);">&gt;</button>
+                </div>
+            </header>
+
+            <div class="calendar-grid">
+                <div class="day-header">Sun</div><div class="day-header">Mon</div><div class="day-header">Tue</div>
+                <div class="day-header">Wed</div><div class="day-header">Thu</div><div class="day-header">Fri</div><div class="day-header">Sat</div>
+
+                <div class="calendar-day"><div class="date-number" style="opacity: 0.3;">29</div></div>
+                <div class="calendar-day"><div class="date-number" style="opacity: 0.3;">30</div></div>
+                <div class="calendar-day"><div class="date-number">1</div></div>
+                <div class="calendar-day">
+                    <div class="date-number">2</div>
+                    <div class="event-chip evt-blue">Team Meeting 10am</div>
+                </div>
+                <div class="calendar-day"><div class="date-number">3</div></div>
+                <div class="calendar-day"><div class="date-number">4</div></div>
+                <div class="calendar-day"><div class="date-number">5</div></div>
+                
+                <div class="calendar-day"><div class="date-number">6</div></div>
+                <div class="calendar-day"><div class="date-number">7</div></div>
+                <div class="calendar-day">
+                    <div class="date-number">8</div>
+                    <div class="event-chip evt-pink">Deadline: Project X</div>
+                </div>
+                </div>
+        </main>
+    </div>
+</body>
+</html>
